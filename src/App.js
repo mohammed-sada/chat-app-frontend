@@ -1,24 +1,48 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { io } from 'socket.io-client';
+
+import Home from './pages/HomePage';
+import Chat from './pages/ChatPage';
+import Error from './pages/ErrorPage';
 import './App.css';
 
+const socket = io('http://localhost:5000', { transports: ['websocket'] });
+
 function App() {
+
+  const [username, setUsername] = useState('');
+  const [room, setRoom] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+
+          <Route path='/' exact>
+            <Home
+              socket={socket}
+              username={username}
+              setUsername={setUsername}
+              room={room}
+              setRoom={setRoom} />
+          </Route>
+
+          <Route path='/chat' exact>
+            <Chat
+              socket={socket}
+              username={username}
+              room={room}
+            />
+          </Route>
+
+          <Route path='*'  >
+            <Error />
+          </Route>
+
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
