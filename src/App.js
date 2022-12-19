@@ -6,9 +6,9 @@ import Home from './pages/HomePage';
 import Chat from './pages/ChatPage';
 import Error from './pages/ErrorPage';
 import './App.css';
+import { API_URL } from "./config";
 
-const socket = io('http://localhost:5000', { transports: ['websocket'] });
-
+const socket = io(API_URL, { transports: ['websocket'] });
 function App() {
 
   const [username, setUsername] = useState('');

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_URL } from "../config";
 import Messages from './Messages';
 
 const Chat = ({ socket }) => {
@@ -6,12 +7,13 @@ const Chat = ({ socket }) => {
     const [message, setMessage] = useState('');
 
     async function getMessages() {
+        console.log(API_URL);
         try {
-            const res = await fetch("http://localhost:5000/messages");
+            const res = await fetch(`${API_URL}/messages`);
             const messages = await res.json();
 
             const promises = messages.map(async (messageId) => {
-                return (await fetch(`http://localhost:5000/message?id=${messageId}`)).json();
+                return (await fetch(`${API_URL}/message?id=${messageId}`)).json();
             });
 
             Promise.all(promises).then(messages => {
