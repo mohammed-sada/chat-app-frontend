@@ -11,9 +11,8 @@ const Messages = ({ messages }) => {
                             <span className="message__name">{message.username}</span>
                             <span className="message__meta">{moment(message.createdAt).format('h:mm a')}</span>
                         </p>
-                        <p>
-                            {message.text ? (message.text) : (<a href={message.url} target="_blank" rel="noreferrer"> My current location 💣</a>)}
-                        </p>
+                        <p>{message.text}</p>
+                        <p className="cipher__text">{message.cipher}</p>
                     </div>;
                 })
             }

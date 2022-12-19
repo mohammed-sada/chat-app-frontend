@@ -15,7 +15,7 @@ const Home = ({ socket, username, room, setUsername, setRoom }) => {
             }
         });
 
-        history.push('/chat');
+        history.push(`/chat?username=${username}&room=${room}`);
     };
 
     useEffect(() => {
