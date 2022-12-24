@@ -7,7 +7,6 @@ const Chat = ({ socket }) => {
     const [message, setMessage] = useState('');
 
     async function getMessages() {
-        console.log(API_URL);
         try {
             const res = await fetch(`${API_URL}/messages`);
             const messages = await res.json();
@@ -46,9 +45,11 @@ const Chat = ({ socket }) => {
         }]);
     });
 
-    const submitMessage = (e) => {
-        e.preventDefault();
-        socket.emit('sendMessage', message, (error) => {
+    const submitMessage = (cipherType = "hill") => {
+        socket.emit('sendMessage', {
+            message,
+            cipherType
+        }, (error) => {
             if (error) {
                 return console.log(error);
             }
@@ -76,7 +77,7 @@ const Chat = ({ socket }) => {
             <Messages messages={messages} />
 
             <div className="compose">
-                <form id="message-form" onSubmit={submitMessage}>
+                <form id="message-form" onSubmit={(e) => e.preventDefault()}>
                     <input
                         name="message"
                         type="text"
@@ -87,8 +88,8 @@ const Chat = ({ socket }) => {
                         onChange={(e) => setMessage(e.target.value)}
                     />
 
-                    <button type="submit">Hill</button>
-                    <button type="submit">DES</button>
+                    <button type="button" onClick={() => submitMessage("hill")}>Hill</button>
+                    <button type="button" onClick={() => submitMessage("des")}>DES</button>
                 </form>
 
                 {/* <button id="send-location" onClick={sendLocation}>Send Location</button> */}
