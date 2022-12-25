@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from "../config";
 import Messages from './Messages';
+import Spinner from "./Spinner";
 
 const Chat = ({ socket }) => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
+    const [loadingMessages, setLoadingMessages] = useState(true);
 
     async function getMessages() {
         try {
@@ -18,6 +20,7 @@ const Chat = ({ socket }) => {
             Promise.all(promises).then(messages => {
                 messages.sort((a, b) => a.createdAt - b.createdAt);
                 setMessages(messages);
+                setLoadingMessages(false);
             });
 
         } catch (error) {
@@ -74,11 +77,16 @@ const Chat = ({ socket }) => {
 
     return (
         <div className="chat__main">
+            {loadingMessages ?
+                <div className="loading">
+                    <Spinner />
+                </div>
+                : null}
             <Messages messages={messages} />
-
             <div className="compose">
                 <form id="message-form" onSubmit={(e) => e.preventDefault()}>
                     <input
+                        disabled={loadingMessages}
                         name="message"
                         type="text"
                         placeholder="Message"
@@ -88,8 +96,12 @@ const Chat = ({ socket }) => {
                         onChange={(e) => setMessage(e.target.value)}
                     />
 
-                    <button type="button" onClick={() => submitMessage("hill")}>Hill</button>
-                    <button type="button" onClick={() => submitMessage("des")}>DES</button>
+                    <button
+                        disabled={loadingMessages}
+                        type="button" onClick={() => submitMessage("hill")}>Hill</button>
+                    <button
+                        disabled={loadingMessages}
+                        type="button" onClick={() => submitMessage("des")}>DES</button>
                 </form>
 
                 {/* <button id="send-location" onClick={sendLocation}>Send Location</button> */}
