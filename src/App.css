@@ -118,6 +118,7 @@ button:disabled {
   flex-grow: 1;
   padding: 24px 24px 0 24px;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 /* Message Styles */

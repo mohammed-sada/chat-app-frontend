@@ -39,6 +39,8 @@ const Chat = ({ socket }) => {
             cipher: message.cipher,
             createdAt: message.createdAt
         }]);
+        const objDiv = document.getElementById("messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
     });
     socket.on('locationMessage', (message) => {
         setMessages([...messages, {
