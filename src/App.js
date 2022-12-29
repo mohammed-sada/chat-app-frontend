@@ -7,6 +7,7 @@ import Chat from './pages/ChatPage';
 import Error from './pages/ErrorPage';
 import './App.css';
 import { API_URL } from "./config";
+import ImageDecEnc from "./pages/ImageDecEnc";
 
 const socket = io(API_URL, { transports: ['websocket'] });
 function App() {
@@ -34,6 +35,9 @@ function App() {
               username={username}
               room={room}
             />
+          </Route>
+          <Route path='/image-dec-enc' exact>
+            <ImageDecEnc />
           </Route>
 
           <Route path='*'  >

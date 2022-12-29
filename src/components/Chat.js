@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { API_URL } from "../config";
 import Messages from './Messages';
 import Spinner from "./Spinner";
@@ -84,7 +85,7 @@ const Chat = ({ socket }) => {
                     <Spinner />
                 </div>
                 : null}
-            <Messages messages={messages} />
+            <Messages messages={messages} loading={loadingMessages} />
             <div className="compose">
                 <form id="message-form" onSubmit={(e) => e.preventDefault()}>
                     <input
@@ -104,6 +105,7 @@ const Chat = ({ socket }) => {
                     <button
                         disabled={loadingMessages}
                         type="button" onClick={() => submitMessage("des")}>DES</button>
+                    <Link to="/image-dec-enc"><button type="button">Image</button></Link>
                 </form>
 
                 {/* <button id="send-location" onClick={sendLocation}>Send Location</button> */}

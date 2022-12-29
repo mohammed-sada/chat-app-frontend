@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* General Styles */
 :root {
   --primary-1: #0e0e0e;
@@ -207,6 +211,80 @@ button:disabled {
   text-transform: capitalize;
 }
 
+/* image enc dec */
+.image__decenc__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ebebeb;
+}
+
+.image__decenc__container .images {
+  width: 60%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #2b2b2b52;
+  padding-bottom: 20px;
+}
+.image__decenc__container img {
+  width: 200px;
+  height: 200px;
+}
+.image__decenc__container .convert {
+  width: 100px;
+  height: 100px;
+}
+.image__decenc__container .image__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+.image__decenc__container p {
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.image__decenc__container .image__container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image__decenc__container .image__upload {
+  margin-bottom: 20px;
+}
+.image__decenc__container .image__upload p {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.image__decenc__container .decrypted__image {
+  margin-top: 40px;
+  justify-self: start;
+  border: #2b2b2b52 1px solid;
+  padding: 10px;
+}
+.image__decenc__container .decrypted__image p {
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 700;
+}
+.success {
+  color: rgb(0, 151, 0);
+}
+
 /* Loading */
 .loading {
   position: absolute;
@@ -244,7 +322,7 @@ button:disabled {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #fff;
+  background: rgb(27, 27, 27);
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);

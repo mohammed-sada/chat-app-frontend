@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-const Messages = ({ messages }) => {
+const Messages = ({ messages, loading }) => {
     return (
         <div id="messages" className="chat__messages">
             {messages.length > 0 ?
@@ -15,7 +15,7 @@ const Messages = ({ messages }) => {
                         <p className="cipher__text">{message.cipher}</p>
                     </div>;
                 })
-                : <p className="no__messages">no messages yet</p>}
+                : <p className="no__messages" hidden={loading}>no messages yet</p>}
         </div>
     );
 };
