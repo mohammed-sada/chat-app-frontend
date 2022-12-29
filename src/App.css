@@ -49,6 +49,7 @@ input {
 }
 
 button {
+  height: 100%;
   cursor: pointer;
   padding: 12px;
   background: var(--primary-1);

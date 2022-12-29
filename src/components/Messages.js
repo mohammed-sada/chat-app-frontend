@@ -15,7 +15,7 @@ const Messages = ({ messages, loading }) => {
                         <p className="cipher__text">{message.cipher}</p>
                     </div>;
                 })
-                : <p className="no__messages" hidden={loading}>no messages yet</p>}
+                : loading ? null : <p className="no__messages" >no messages yet</p>}
         </div>
     );
 };

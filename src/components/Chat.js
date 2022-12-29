@@ -105,7 +105,13 @@ const Chat = ({ socket }) => {
                     <button
                         disabled={loadingMessages}
                         type="button" onClick={() => submitMessage("des")}>DES</button>
-                    <Link to="/image-dec-enc"><button type="button">Image</button></Link>
+                    <Link to="/image-dec-enc">
+                        <button
+                            disabled={loadingMessages}
+                            type="button">
+                            Image
+                        </button>
+                    </Link>
                 </form>
 
                 {/* <button id="send-location" onClick={sendLocation}>Send Location</button> */}
